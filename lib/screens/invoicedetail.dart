@@ -31,12 +31,16 @@ class InvoiceDetailState extends State {
   InvoiceDetailState(this.invoice);
   final _priorities = ["Due", "Open", "Paid"];
   String _priority = "Open";
+  TextEditingController vatController = TextEditingController();
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  TextEditingController amountController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    vatController.text = invoice.vatnumber;
     titleController.text = invoice.title;
     descriptionController.text = invoice.description;
+    amountController.text = invoice.amount as String;
     TextStyle textStyle = Theme.of(context).textTheme.headline5;
     return Scaffold(
         appBar: AppBar(
@@ -66,11 +70,11 @@ class InvoiceDetailState extends State {
                 Column(
                   children: <Widget>[
                     TextField(
-                      controller: titleController,
+                      controller: vatController,
                       style: textStyle,
-                      onChanged: (value) => this.updateTitle(),
+                      onChanged: (value) => this.updateVat(),
                       decoration: InputDecoration(
-                          labelText: "Title",
+                          labelText: "VAT number",
                           labelStyle: textStyle,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5.0),
@@ -79,11 +83,37 @@ class InvoiceDetailState extends State {
                     Padding(
                         padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
                         child: TextField(
+                          controller: titleController,
+                          style: textStyle,
+                          onChanged: (value) => this.updateTitle(),
+                          decoration: InputDecoration(
+                              labelText: "Title",
+                              labelStyle: textStyle,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                              )),
+                        )),
+                    Padding(
+                        padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+                        child: TextField(
                           controller: descriptionController,
                           style: textStyle,
                           onChanged: (value) => this.updateDescription(),
                           decoration: InputDecoration(
                               labelText: "Description",
+                              labelStyle: textStyle,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                              )),
+                        )),
+                    Padding(
+                        padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+                        child: TextField(
+                          controller: amountController,
+                          style: textStyle,
+                          onChanged: (value) => this.updateAmount(),
+                          decoration: InputDecoration(
+                              labelText: "Amount",
                               labelStyle: textStyle,
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0),
@@ -168,11 +198,19 @@ class InvoiceDetailState extends State {
     return _priorities[value - 1];
   }
 
+  void updateVat() {
+    invoice.vatnumber = vatController.text;
+  }
+
   void updateTitle() {
     invoice.title = titleController.text;
   }
 
   void updateDescription() {
     invoice.description = descriptionController.text;
+  }
+
+  void updateAmount() {
+    invoice.amount = amountController.text;
   }
 }

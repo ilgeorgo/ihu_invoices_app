@@ -12,6 +12,8 @@ class DbHelper {
   static final DbHelper _dbHelper = DbHelper._internal();
   String tblInvoice = "invoice";
   String colId = "id";
+  String colVatnumber = "vatnumber";
+  String colAmount = "amount";
   String colDescription = "description";
   String colTitle = "title";
   String colPriority = "priority";
@@ -46,7 +48,7 @@ class DbHelper {
   void _createDb(Database db, int newVersion) async {
     await db.execute(
         "CREATE TABLE $tblInvoice($colId INTEGER PRIMARY KEY, $colTitle TEXT, " +
-            "$colDescription TEXT, $colPriority INTEGER, $colDate TEXT)");
+            "$colVatnumber TEXT, $colAmount TEXT, $colDescription TEXT, $colPriority INTEGER, $colDate TEXT)");
   }
 
   //Query methods

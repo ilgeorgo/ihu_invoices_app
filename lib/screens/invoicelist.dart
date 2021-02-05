@@ -31,7 +31,7 @@ class InvoiceListState extends State {
       floatingActionButton: FloatingActionButton(
         //When we press the button we navigate to the second screen to add a new invoice
         onPressed: () {
-          navigateToDetail(Invoice("", 3, ""));
+          navigateToDetail(Invoice("", "", 3, "", ""));
         },
         tooltip: "Add new Invoice",
         //Change the icon here to money or invoice
