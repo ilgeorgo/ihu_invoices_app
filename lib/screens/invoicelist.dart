@@ -31,7 +31,7 @@ class InvoiceListState extends State {
           navigateToDetail(Invoice("", 3, ""));
         },
         tooltip: "Add new Invoice",
-        //CHange the icon here to money or invoice
+        //Change the icon here to money or invoice
         child: new Icon(Icons.add),
       ),
     );

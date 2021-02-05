@@ -144,7 +144,6 @@ class InvoiceDetailState extends State {
   }
 
 //Below we have helping methods to format our values
-
   void updatePriority(String value) {
     switch (value) {
       case "Due":
