@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:invoices_app/util/dbhelper.dart';
-import 'package:invoices_app/model/invoice.dart';
 import 'package:invoices_app/screens/invoicelist.dart';
+import './screens/info_screen.dart';
+import './widgets/app_drawer.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,6 +9,8 @@ void main() {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+  final appTitle = 'Εφαρμογή Τιμολογίων';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,7 +31,11 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'InvoicesApp'),
+      home: MyHomePage(title: appTitle),
+      routes: {
+        InfoScreen.routeName: (ctx) => InfoScreen(),
+        InvoiceList.routeName: (ctx) => InvoiceList(),
+      },
     );
   }
 }
@@ -57,10 +63,15 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     //Build AppBar
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(widget.title),
+      drawer: AppDrawer(),
+      appBar: new AppBar(title: new Text(widget.title)),
+      body: Container(
+        decoration: BoxDecoration(
+            //φόρτωση της εικόνας φόντου.
+            image: DecorationImage(
+                image: AssetImage('./assets/images/home_back.png'),
+                fit: BoxFit.cover)),
       ),
-      body: InvoiceList(),
     );
   }
 }

@@ -40,7 +40,10 @@ class InvoiceDetailState extends State {
     TextStyle textStyle = Theme.of(context).textTheme.headline5;
     return Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: false, title: Text(invoice.title),
+          //If new invoice add generic title
+          title: invoice.title != ""
+              ? Text(invoice.title)
+              : Text("Δημιουργία νέου τιμολογίου"),
           //Action to make the menu interactive
           actions: <Widget>[
             PopupMenuButton<String>(

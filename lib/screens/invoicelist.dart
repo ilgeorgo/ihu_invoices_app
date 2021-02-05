@@ -3,16 +3,15 @@ import 'package:invoices_app/util/dbhelper.dart';
 import 'package:invoices_app/model/invoice.dart';
 //in order to start navigating between screens
 import 'package:invoices_app/screens/invoicedetail.dart';
+import '../widgets/app_drawer.dart';
 
 class InvoiceList extends StatefulWidget {
+  static String routeName = '/invoiceList-screen';
   @override
   State<StatefulWidget> createState() => InvoiceListState();
-  // TODO: implement createState
-
 }
 
 class InvoiceListState extends State {
-  @override
   DbHelper helper = DbHelper();
   List<Invoice> invoices;
   int count = 0;
@@ -24,6 +23,10 @@ class InvoiceListState extends State {
     }
     //Here we build the UI
     return Scaffold(
+      drawer: AppDrawer(),
+      appBar: new AppBar(
+        title: const Text('Λίστα Τιμολογίων'),
+      ),
       body: invoiceListItems(),
       floatingActionButton: FloatingActionButton(
         //When we press the button we navigate to the second screen to add a new invoice
@@ -32,7 +35,7 @@ class InvoiceListState extends State {
         },
         tooltip: "Add new Invoice",
         //Change the icon here to money or invoice
-        child: new Icon(Icons.add),
+        child: new Icon(Icons.beach_access),
       ),
     );
   }
