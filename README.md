@@ -1,6 +1,8 @@
 # invoices_app
 
-A new Flutter project for MPhil "Advanced Programming" course at IHU. 
+A new Flutter project for MPhil "Advanced Programming" course at IHU year 2021.
+
+A very lightweghit cross-device client application in Flutter for issuing and managing electronic invoices.
 
 ## Getting Started
 
